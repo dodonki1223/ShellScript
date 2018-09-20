@@ -2,3 +2,6 @@
 
 ### MySQL_ExportImportCopy
 - MySQLのデータベースをコピーする
+
+### PostgreSQL_Backup
+- PostgreSQLのデータベースのDumpファイルの作成
