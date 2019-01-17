@@ -14,7 +14,7 @@
 scriptPath=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 # 接続先設定ファイル
-connection_setting=$scriptPath/server_connection_info.conf
+connection_setting=$scriptPath/server_connection.conf
 
 #*****************************************************************************
 #* 処 理 名：接続先の環境選択処理
@@ -27,8 +27,7 @@ connection_setting=$scriptPath/server_connection_info.conf
 #*****************************************************************************
 inputEnvironmentNumber()
 {
-    echo どの環境に接続しますか？
-    read -p "対象の環境の番号を入力して下さい: " targetNumber
+    read -p "接続したい環境の番号を入力して下さい: " targetNumber
     isExistsNumber ${numbers[*]}
     result=$?
     echo
@@ -63,6 +62,15 @@ isExistsNumber()
     echo "入力値が不正です。正しい値を入力して下さい！！"
     return 0
 }
+
+# タイトルの表示
+echo -----------------------------------------------------------
+echo \<ssh接続ツール\>
+echo 接続先のサーバーの一覧が表示されるので、接続したいサーバー
+echo の番号を入力して下さい。入力した番号のサーバーにssh接続しま
+echo す。サーバーのリストを編集したい時はserver_connection.conf
+echo を修正して下さい。
+echo -----------------------------------------------------------
 
 # 接続先設定ファイルの読み込み処理
 # ※それぞれ配列にセットする
