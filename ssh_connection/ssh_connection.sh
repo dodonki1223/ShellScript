@@ -107,6 +107,7 @@ echo \<接続先情報\>
 echo 接続先名　　　：${environments[$targetSubscript]}
 echo ＳＳＨキー情報：${sshkeys[$targetSubscript]}
 echo サーバー情報　：${servers[$targetSubscript]}
+echo ポート番号　　：${ports[$targetSubscript]}
 echo ---------------------------------------------
 echo
 
