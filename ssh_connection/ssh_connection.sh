@@ -7,7 +7,7 @@
 #* 使用方法：このシェルスクリプトと同階層にあるserver_connection_info.confのファイル
 #*           にサーバーの接続先情報を設定して下さい
 #*           設定ファイルにはカンマ区切りで下記のように設定して下さい
-#*             環境名,sshキーファイルの場所,サーバー情報(「ユーザー名@IPアドレス」形式)
+#*             環境名,sshキーファイルの場所,サーバー情報(「ユーザー名@IPアドレス」形式),ポート番号
 #***********************************************************************************
 
 # このシェルスクリプトの実行パスを取得する
@@ -78,6 +78,7 @@ numbers=(`awk -F'[,]' '{print NR}' "${connection_setting}"`)
 environments=(`awk -F'[,]' '{print $1}' "${connection_setting}"`)
 sshkeys=(`awk -F'[,]' '{print $2}' "${connection_setting}"`)
 servers=(`awk -F'[,]' '{print $3}' "${connection_setting}"`)
+ports=(`awk -F'[,]' '{print $4}' "${connection_setting}"`)
 
 # 接続先の環境の一覧を画面に表示
 echo
@@ -111,7 +112,7 @@ echo
 
 # 処理を続行するかユーザーに確認
 echo 上記のサーバーへ下記のコマンドを実行して接続します。よろしいですか？
-echo ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]}
+echo ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
 echo
 echo 「Enter」キーを押すとそのまま処理が続行されます
 echo 処理をやめる時はCtrl+Cで終了して下さい……
@@ -120,4 +121,4 @@ read -p "Hit enter: "
 echo
 
 # サーバー接続処理の実行
-ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]}
+ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
