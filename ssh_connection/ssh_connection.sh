@@ -113,7 +113,7 @@ echo
 
 # 処理を続行するかユーザーに確認
 echo 上記のサーバーへ下記のコマンドを実行して接続します。よろしいですか？
-echo ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
+echo ssh -o ServerAliveInterval=120 -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
 echo
 echo 「Enter」キーを押すとそのまま処理が続行されます
 echo 処理をやめる時はCtrl+Cで終了して下さい……
@@ -122,4 +122,4 @@ read -p "Hit enter: "
 echo
 
 # サーバー接続処理の実行
-ssh -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
+ssh -o ServerAliveInterval=120 -i ${sshkeys[$targetSubscript]} ${servers[$targetSubscript]} -p ${ports[$targetSubscript]}
